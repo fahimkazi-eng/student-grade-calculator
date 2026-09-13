@@ -3,144 +3,1236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Grade Calculator</title>
+
+    <title>Student Grade Calculator | Fahim Kazi</title>
 
     <style>
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --background: #f1f5f9;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --success: #16a34a;
+            --danger: #dc2626;
         }
 
         body {
-            margin: 0;
             min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #eff6ff, #f8fafc);
+            color: var(--text);
+        }
+
+        /* Header */
+
+        header {
+            background: #0f172a;
+            color: white;
+            padding: 20px 7%;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            font-family: Arial, sans-serif;
-            background: #f2f4f7;
+            gap: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
 
-        .container {
-            width: 90%;
-            max-width: 450px;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        .brand {
+            font-size: 22px;
+            font-weight: bold;
         }
 
-        h1 {
+        .brand span {
+            color: #60a5fa;
+        }
+
+        .creator {
+            font-size: 14px;
+            color: #cbd5e1;
+        }
+
+        /* Main */
+
+        main {
+            width: 92%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .hero {
             text-align: center;
-            margin-bottom: 25px;
-            color: #222;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: clamp(30px, 5vw, 46px);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        /* Layout */
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 10px 35px rgba(15, 23, 42, 0.08);
+        }
+
+        .card h2 {
+            font-size: 21px;
+            margin-bottom: 20px;
+        }
+
+        /* Inputs */
+
+        .input-group {
+            margin-bottom: 17px;
         }
 
         label {
             display: block;
-            margin-top: 15px;
-            margin-bottom: 6px;
+            margin-bottom: 7px;
             font-weight: bold;
+            font-size: 14px;
         }
 
         input {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
+            padding: 13px 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s;
         }
 
-        button {
-            width: 100%;
-            margin-top: 25px;
-            padding: 13px;
+        input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        .student-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        /* Subject */
+
+        .subject-row {
+            display: grid;
+            grid-template-columns: 1fr 130px 45px;
+            gap: 10px;
+            margin-bottom: 12px;
+            align-items: center;
+        }
+
+        .subject-row input {
+            margin: 0;
+        }
+
+        .remove-btn {
+            height: 44px;
             border: none;
-            border-radius: 8px;
-            background: #222;
-            color: white;
-            font-size: 16px;
+            border-radius: 9px;
+            background: #fee2e2;
+            color: var(--danger);
+            font-size: 18px;
             cursor: pointer;
         }
 
-        button:hover {
-            background: #444;
+        .remove-btn:hover {
+            background: #fecaca;
         }
 
-        #result {
-            margin-top: 25px;
-            padding: 15px;
-            border-radius: 8px;
-            background: #f2f4f7;
-            line-height: 1.8;
+        /* Buttons */
+
+        .button-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+            border-radius: 10px;
+            padding: 13px 18px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .primary-btn {
+            background: var(--primary);
+            color: white;
+            flex: 1;
+        }
+
+        .primary-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .secondary-btn {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .secondary-btn:hover {
+            background: #cbd5e1;
+        }
+
+        .add-btn {
+            width: 100%;
+            margin-top: 5px;
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .add-btn:hover {
+            background: #bfdbfe;
+        }
+
+        /* Result */
+
+        .result-empty {
+            text-align: center;
+            padding: 45px 20px;
+            color: var(--muted);
+        }
+
+        .result-empty .icon {
+            font-size: 45px;
+            margin-bottom: 12px;
+        }
+
+        .student-result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .student-result-header h3 {
+            font-size: 21px;
+        }
+
+        .student-result-header p {
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        .status {
+            padding: 9px 15px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .passed {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .failed {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        /* Statistics */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .stat {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 17px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat .label {
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 7px;
+        }
+
+        .stat .value {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        /* Table */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            padding: 12px 8px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        th {
+            color: var(--muted);
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .grade {
+            font-weight: bold;
+        }
+
+        /* Progress */
+
+        .progress {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+            min-width: 80px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 20px;
+            transition: width 0.6s ease;
+        }
+
+        /* Message */
+
+        .message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            display: none;
+            font-size: 14px;
+        }
+
+        .error {
+            display: block;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Footer */
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        footer strong {
+            color: var(--text);
+        }
+
+        /* Mobile */
+
+        @media (max-width: 800px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .subject-row {
+                grid-template-columns: 1fr 110px 42px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            header {
+                padding: 18px 5%;
+            }
+
+            .creator {
+                display: none;
+            }
+
+            main {
+                width: 94%;
+                margin: 25px auto;
+            }
+
+            .card {
+                padding: 18px;
+            }
+
+            .student-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .student-result-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .subject-row {
+                grid-template-columns: 1fr 90px 40px;
+            }
+        }
+
+        /* Print */
+
+        @media print {
+            header,
+            .hero,
+            .calculator-card,
+            footer,
+            .button-row {
+                display: none !important;
+            }
+
+            body {
+                background: white;
+            }
+
+            main {
+                width: 100%;
+                margin: 0;
+            }
+
+            .grid {
+                display: block;
+            }
+
+            .result-card {
+                box-shadow: none;
+                border: none;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+<header>
+    <div class="brand">
+        <span>Grade</span>Calc
+    </div>
 
+    <div class="creator">
+        Developed by <strong>Fahim Kazi</strong>
+    </div>
+</header>
+
+
+<main>
+
+    <section class="hero">
         <h1>Student Grade Calculator</h1>
+        <p>Calculate marks, grades, GPA and overall academic performance.</p>
+    </section>
 
-        <label>Subject 1</label>
-        <input type="number" id="subject1" min="0" max="100">
 
-        <label>Subject 2</label>
-        <input type="number" id="subject2" min="0" max="100">
+    <div class="grid">
 
-        <label>Subject 3</label>
-        <input type="number" id="subject3" min="0" max="100">
+        <!-- Calculator -->
 
-        <button onclick="calculateGrade()">Calculate Grade</button>
+        <section class="card calculator-card">
 
-        <div id="result">
-            Enter your marks and click the button.
-        </div>
+            <h2>📝 Student Information</h2>
+
+            <div class="student-grid">
+
+                <div class="input-group">
+                    <label for="studentName">Student Name</label>
+                    <input
+                        type="text"
+                        id="studentName"
+                        placeholder="Enter student name"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="studentId">Student ID</label>
+                    <input
+                        type="text"
+                        id="studentId"
+                        placeholder="e.g. STU-001"
+                    >
+                </div>
+
+            </div>
+
+            <div class="input-group">
+                <label for="studentClass">Class / Program</label>
+                <input
+                    type="text"
+                    id="studentClass"
+                    placeholder="e.g. Computer Science"
+                >
+            </div>
+
+
+            <h2 style="margin-top: 25px;">📚 Subject Marks</h2>
+
+            <div id="subjects">
+
+                <div class="subject-row">
+                    <input
+                        type="text"
+                        class="subject-name"
+                        value="Mathematics"
+                        placeholder="Subject name"
+                    >
+
+                    <input
+                        type="number"
+                        class="subject-mark"
+                        min="0"
+                        max="100"
+                        placeholder="0-100"
+                    >
+
+                    <button
+                        class="remove-btn"
+                        onclick="removeSubject(this)"
+                        title="Remove subject"
+                    >
+                        ×
+                    </button>
+                </div>
+
+
+                <div class="subject-row">
+                    <input
+                        type="text"
+                        class="subject-name"
+                        value="English"
+                        placeholder="Subject name"
+                    >
+
+                    <input
+                        type="number"
+                        class="subject-mark"
+                        min="0"
+                        max="100"
+                        placeholder="0-100"
+                    >
+
+                    <button
+                        class="remove-btn"
+                        onclick="removeSubject(this)"
+                        title="Remove subject"
+                    >
+                        ×
+                    </button>
+                </div>
+
+
+                <div class="subject-row">
+                    <input
+                        type="text"
+                        class="subject-name"
+                        value="Computer Science"
+                        placeholder="Subject name"
+                    >
+
+                    <input
+                        type="number"
+                        class="subject-mark"
+                        min="0"
+                        max="100"
+                        placeholder="0-100"
+                    >
+
+                    <button
+                        class="remove-btn"
+                        onclick="removeSubject(this)"
+                        title="Remove subject"
+                    >
+                        ×
+                    </button>
+                </div>
+
+            </div>
+
+
+            <button class="add-btn" onclick="addSubject()">
+                + Add Another Subject
+            </button>
+
+
+            <div id="message" class="message"></div>
+
+
+            <div class="button-row">
+
+                <button
+                    class="primary-btn"
+                    onclick="calculateResult()"
+                >
+                    Calculate Result
+                </button>
+
+                <button
+                    class="secondary-btn"
+                    onclick="resetCalculator()"
+                >
+                    Reset
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Result -->
+
+        <section class="card result-card">
+
+            <h2>📊 Result Summary</h2>
+
+            <div id="result">
+
+                <div class="result-empty">
+
+                    <div class="icon">🎓</div>
+
+                    <p>
+                        Enter the student's marks and click
+                        <strong>Calculate Result</strong>.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
 
     </div>
 
-    <script>
-        function calculateGrade() {
+</main>
 
-            let mark1 = Number(document.getElementById("subject1").value);
-            let mark2 = Number(document.getElementById("subject2").value);
-            let mark3 = Number(document.getElementById("subject3").value);
 
-            if (
-                mark1 < 0 || mark1 > 100 ||
-                mark2 < 0 || mark2 > 100 ||
-                mark3 < 0 || mark3 > 100
-            ) {
-                document.getElementById("result").innerHTML =
-                    "Please enter marks between 0 and 100.";
+<footer>
+    © 2026 <strong>Fahim Kazi</strong> · Student Grade Calculator
+</footer>
+
+
+<script>
+
+    /* -------------------------
+       Add Subject
+    ------------------------- */
+
+    function addSubject() {
+
+        const subjects = document.getElementById("subjects");
+
+        const row = document.createElement("div");
+
+        row.className = "subject-row";
+
+        row.innerHTML = `
+            <input
+                type="text"
+                class="subject-name"
+                placeholder="Subject name"
+            >
+
+            <input
+                type="number"
+                class="subject-mark"
+                min="0"
+                max="100"
+                placeholder="0-100"
+            >
+
+            <button
+                class="remove-btn"
+                onclick="removeSubject(this)"
+                title="Remove subject"
+            >
+                ×
+            </button>
+        `;
+
+        subjects.appendChild(row);
+    }
+
+
+    /* -------------------------
+       Remove Subject
+    ------------------------- */
+
+    function removeSubject(button) {
+
+        const rows =
+            document.querySelectorAll(".subject-row");
+
+        if (rows.length <= 1) {
+
+            showMessage(
+                "You must have at least one subject.",
+                "error"
+            );
+
+            return;
+        }
+
+        button.parentElement.remove();
+    }
+
+
+    /* -------------------------
+       Grade System
+    ------------------------- */
+
+    function getGrade(average) {
+
+        if (average >= 80) {
+            return {
+                grade: "A+",
+                gpa: 4.00
+            };
+        }
+
+        if (average >= 70) {
+            return {
+                grade: "A",
+                gpa: 3.50
+            };
+        }
+
+        if (average >= 60) {
+            return {
+                grade: "B",
+                gpa: 3.00
+            };
+        }
+
+        if (average >= 50) {
+            return {
+                grade: "C",
+                gpa: 2.00
+            };
+        }
+
+        if (average >= 40) {
+            return {
+                grade: "D",
+                gpa: 1.00
+            };
+        }
+
+        return {
+            grade: "F",
+            gpa: 0.00
+        };
+    }
+
+
+    /* -------------------------
+       Calculate Result
+    ------------------------- */
+
+    function calculateResult() {
+
+        clearMessage();
+
+        const studentName =
+            document.getElementById("studentName").value.trim();
+
+        const studentId =
+            document.getElementById("studentId").value.trim();
+
+        const studentClass =
+            document.getElementById("studentClass").value.trim();
+
+
+        if (!studentName) {
+
+            showMessage(
+                "Please enter the student's name.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        const names =
+            document.querySelectorAll(".subject-name");
+
+        const marks =
+            document.querySelectorAll(".subject-mark");
+
+
+        let subjects = [];
+        let total = 0;
+        let failedSubject = false;
+
+
+        for (let i = 0; i < marks.length; i++) {
+
+            const subjectName =
+                names[i].value.trim();
+
+            const mark =
+                Number(marks[i].value);
+
+
+            if (!subjectName) {
+
+                showMessage(
+                    Please enter a name for Subject ${i + 1}.,
+                    "error"
+                );
+
                 return;
             }
 
-            let total = mark1 + mark2 + mark3;
-            let average = total / 3;
 
-            let grade;
+            if (
+                marks[i].value === "" ||
+                mark < 0 ||
+                mark > 100 ||
+                isNaN(mark)
+            ) {
 
-            if (average >= 80) {
-                grade = "A+";
-            } else if (average >= 70) {
-                grade = "A";
-            } else if (average >= 60) {
-                grade = "B";
-            } else if (average >= 50) {
-                grade = "C";
-            } else if (average >= 40) {
-                grade = "D";
-            } else {
-                grade = "F";
+                showMessage(
+                    Please enter a valid mark between 0 and 100 for ${subjectName}.,
+                    "error"
+                );
+
+                return;
             }
 
-            document.getElementById("result").innerHTML =
-                "<strong>Total:</strong> " + total +
-                "<br><strong>Average:</strong> " + average.toFixed(2) +
-                "<br><strong>Grade:</strong> " + grade;
+
+            const result =
+                getGrade(mark);
+
+
+            if (mark < 40) {
+                failedSubject = true;
+            }
+
+
+            subjects.push({
+                name: subjectName,
+                mark: mark,
+                grade: result.grade,
+                gpa: result.gpa
+            });
+
+
+            total += mark;
         }
-    </script>
+
+
+        const average =
+            total / subjects.length;
+
+
+        const overall =
+            getGrade(average);
+
+
+        const passed =
+            !failedSubject && overall.grade !== "F";
+
+
+        const statusText =
+            passed ? "PASSED" : "FAILED";
+
+
+        const statusClass =
+            passed ? "passed" : "failed";
+
+
+        let tableRows = "";
+
+
+        subjects.forEach(subject => {
+
+            tableRows += `
+
+                <tr>
+
+                    <td>
+                        ${escapeHTML(subject.name)}
+                    </td>
+
+                    <td>
+                        ${subject.mark}/100
+                    </td>
+
+                    <td>
+                        <div class="progress">
+                            <div
+                                class="progress-bar"
+                                style="width:${subject.mark}%"
+                            ></div>
+                        </div>
+                    </td>
+
+                    <td class="grade">
+                        ${subject.grade}
+                    </td>
+
+                    <td>
+                        ${subject.gpa.toFixed(2)}
+                    </td>
+
+                </tr>
+
+            `;
+        });
+
+
+        document.getElementById("result").innerHTML = `
+
+            <div class="student-result-header">
+
+                <div>
+
+                    <h3>
+                        ${escapeHTML(studentName)}
+                    </h3>
+
+                    <p>
+                        ${studentId
+                            ? "ID: " + escapeHTML(studentId)
+                            : "Student Result"}
+                        ${studentClass
+                            ? " · " + escapeHTML(studentClass)
+                            : ""}
+                    </p>
+
+                </div>
+
+                <div class="status ${statusClass}">
+                    ${statusText}
+                </div>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <div class="label">
+                        TOTAL MARKS
+                    </div>
+
+                    <div class="value">
+                        ${total}
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="label">
+                        AVERAGE
+                    </div>
+
+                    <div class="value">
+                        ${average.toFixed(2)}%
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="label">
+                        GPA
+                    </div>
+
+                    <div class="value">
+                        ${overall.gpa.toFixed(2)}
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div style="
+                background:#eff6ff;
+                border-radius:12px;
+                padding:18px;
+                margin-bottom:20px;
+                text-align:center;
+            ">
+
+                <div style="
+                    color:#64748b;
+                    font-size:13px;
+                    margin-bottom:5px;
+                ">
+                    OVERALL GRADE
+                </div>
+
+                <div style="
+                    font-size:38px;
+                    font-weight:bold;
+                    color:#2563eb;
+                ">
+                    ${overall.grade}
+                </div>
+
+            </div>
+
+
+            <h3 style="margin-bottom:10px;">
+                Subject Performance
+            </h3>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Subject</th>
+                            <th>Marks</th>
+                            <th>Progress</th>
+                            <th>Grade</th>
+                            <th>GPA</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        ${tableRows}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="button-row">
+
+                <button
+                    class="primary-btn"
+                    onclick="window.print()"
+                >
+                    🖨️ Print Result
+                </button>
+
+            </div>
+
+        `;
+    }
+
+
+    /* -------------------------
+       Reset
+    ------------------------- */
+
+    function resetCalculator() {
+
+        document.getElementById("studentName").value = "";
+        document.getElementById("studentId").value = "";
+        document.getElementById("studentClass").value = "";
+
+
+        const subjects =
+            document.getElementById("subjects");
+
+
+        subjects.innerHTML = `
+
+            <div class="subject-row">
+
+                <input
+                    type="text"
+                    class="subject-name"
+                    value="Mathematics"
+                    placeholder="Subject name"
+                >
+
+                <input
+                    type="number"
+                    class="subject-mark"
+                    min="0"
+                    max="100"
+                    placeholder="0-100"
+                >
+
+                <button
+                    class="remove-btn"
+                    onclick="removeSubject(this)"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="subject-row">
+
+                <input
+                    type="text"
+                    class="subject-name"
+                    value="English"
+                    placeholder="Subject name"
+                >
+
+                <input
+                    type="number"
+                    class="subject-mark"
+                    min="0"
+                    max="100"
+                    placeholder="0-100"
+                >
+
+                <button
+                    class="remove-btn"
+                    onclick="removeSubject(this)"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="subject-row">
+
+                <input
+                    type="text"
+                    class="subject-name"
+                    value="Computer Science"
+                    placeholder="Subject name"
+                >
+
+                <input
+                    type="number"
+                    class="subject-mark"
+                    min="0"
+                    max="100"
+                    placeholder="0-100"
+                >
+
+                <button
+                    class="remove-btn"
+                    onclick="removeSubject(this)"
+                >
+                    ×
+                </button>
+
+            </div>
+
+        `;
+
+
+        document.getElementById("result").innerHTML = `
+
+            <div class="result-empty">
+
+                <div class="icon">🎓</div>
+
+                <p>
+                    Enter the student's marks and click
+                    <strong>Calculate Result</strong>.
+                </p>
+
+            </div>
+
+        `;
+
+
+        clearMessage();
+    }
+
+
+    /* -------------------------
+       Messages
+    ------------------------- */
+
+    function showMessage(text, type) {
+
+        const message =
+            document.getElementById("message");
+
+        message.textContent = text;
+
+        message.className =
+            "message " + type;
+    }
+
+
+    function clearMessage() {
+
+        const message =
+            document.getElementById("message");
+
+        message.textContent = "";
+
+        message.className = "message";
+    }
+
+
+    /* -------------------------
+       Security / HTML Escape
+    ------------------------- */
+
+    function escapeHTML(text) {
+
+        const div =
+            document.createElement("div");
+
+        div.textContent = text;
+
+        return div.innerHTML;
+    }
+
+</script>
 
 </body>
 </html>
